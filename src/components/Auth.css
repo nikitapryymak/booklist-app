@@ -1,0 +1,42 @@
+label {
+    font-size: 1.2rem;
+    margin-bottom: .35rem;
+}
+a {
+    text-decoration: none;
+    color: #768d2f;
+    font-weight: 400;
+    text-align: center;
+}
+.SignUp {
+    width: 95%;
+    max-width: 500px;
+    margin: 3rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+form h1 {
+    margin-bottom: 1.2rem;
+    text-align: center;
+    color: #768d2f;
+    font-weight: 400;
+}
+form input {
+    padding: .5rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    outline: none;
+}
+.UpdateProfile, input {
+    font-size: 1rem;
+}
+.below-form {
+    font-weight: 400;
+}
+.logout-btn {
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+}

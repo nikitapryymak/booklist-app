@@ -1,0 +1,71 @@
+.Home {
+    width: 95%;
+    max-width: 1100px;
+    margin: 3.25rem  auto;
+    /* border: 1px solid lightgray; */
+}
+.Home h1 {
+    font-size: 2.75rem;
+    margin-bottom: 1rem;
+}
+.Home h2 {
+    margin: 2rem auto 1rem;
+    font-size: 1.8rem;
+}
+.action-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin: 0 auto 1rem;
+    flex-wrap: wrap;
+}
+.action-btns button {
+    width: fit-content;
+    margin: 1.25rem .5rem;
+    background-color: #fefefe;
+    color: #2e2e2e;
+    box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.85);
+}
+.action-btns button:hover {
+    color: #fefefe;
+    background-color: #2e2e2e;
+}
+.booklist {
+    width: 95%;
+    margin: 0 auto 2rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.search-form {
+    position: relative;
+    width: fit-content;
+    flex-direction: column;
+    align-items: flex-end;
+    /* justify-content: center; */
+    margin: 0 auto;
+    padding: 0;
+}
+.search-form > div {
+    margin-bottom: 0.75rem;
+}
+.search-form label {
+    color: #768d2f;
+    font-weight: 400;
+    margin-right: 0.35rem;
+}
+.search-form input {
+    width: 10rem;
+    margin-bottom: 0;
+    margin-right: 0.55rem;
+}
+.search-form svg {
+    position: absolute;
+    bottom: -1rem;
+    right: 35%;
+    font-size: 1.85rem;
+}
+.search-form svg:hover {
+    color: #e55757;
+}

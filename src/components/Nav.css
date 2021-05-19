@@ -1,0 +1,20 @@
+.Nav {
+    background-color: white;
+    /* background-color: #9fb596; */
+    box-shadow: 0px 4px 16px -4px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 4px 16px -4px rgba(0,0,0,0.75); 
+}
+.nav-content {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 1.2rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-content svg {
+    font-size: 2.1rem;
+}
+.logout-btn {
+    color: #768d2f;
+}

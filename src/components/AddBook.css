@@ -1,0 +1,15 @@
+.AddBook h1 {
+position: relative;
+}
+.AddBook svg {
+    position: absolute;
+    left: 0;
+    top: .4rem;
+    font-size: 1.75rem;
+}
+.AddBook p {
+    margin: .5rem 0;
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: #e55757;
+}
