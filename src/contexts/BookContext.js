@@ -8,26 +8,25 @@ export default function BookProvider(props) {
 
     const { currentUser } = useContext(AuthContext);
     const [books, setBooks] = useState([]);
-    const [userLoading, setUserLoading] = useState(true);
+    const [booksLoading, setBooksLoading] = useState(true);
 
     useEffect(() => {
-        if (!currentUser) return setUserLoading(false);
+        if (!currentUser) return setBooksLoading(false);
         const unsub = db.collection('users').doc(currentUser.uid).collection('books').orderBy('timestamp', 'desc')
         .onSnapshot(snap => {
-            if (snap.empty) return setUserLoading(false);
-            console.log('Book snapshot ran');
+            if (snap.empty) { setBooks('empty'); setBooksLoading(false); return; }  
             setBooks(snap.docs.map(book => ({
                 id: book.id,
                 ...book.data()
             })));
-            setUserLoading(false);
+            setBooksLoading(false);
         });
         return unsub;
     }, [currentUser]) // only run once-- when comp renders
 
     return (
         <BookContext.Provider value={{ books }}>
-            {!userLoading && props.children} 
+            {!booksLoading && props.children} 
         </BookContext.Provider>
     )
 }

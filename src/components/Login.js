@@ -4,9 +4,10 @@ import { AuthContext } from "../contexts/AuthContext";
 import './Auth.css';
 
 export default function SignUp() {
+
+    const { login } = useContext(AuthContext);
     const emailRef = useRef();
     const passwordRef = useRef();
-    const { login } = useContext(AuthContext);
     const [error, setError] = useState(null);
     const history = useHistory();
 
@@ -29,7 +30,7 @@ export default function SignUp() {
                 <label>Email</label>
                     <input type="text" ref={emailRef} required />
                 <label>Password</label>
-                    <input type="text" ref={passwordRef} required />
+                    <input type="password" ref={passwordRef} required />
 
                 { error && <p className='error'>Incorrect email and/or password!</p> }
                 <button type="submit">Login</button>

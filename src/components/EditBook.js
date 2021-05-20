@@ -16,7 +16,6 @@ export default function EditBook() {
     const [imageURL, setImageURL] = useState('');
     const [category, setCategory] = useState('');
     const [currentlyReading, setCurrentlyReading] = useState(null);
-    console.log(currentlyReading);
     const history = useHistory();
 
     useEffect(() => {

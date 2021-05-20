@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import db, { auth } from "../firebase";
+import { auth } from "../firebase";
 
 export const AuthContext = createContext();
 
@@ -20,18 +20,20 @@ export default function AuthProvider(props) {
     function resetPassword(email) {
         return auth.sendPasswordResetEmail(email);
     }
+    function setName(displayName) {
+        setCurrentUser(prev => ({
+            ...prev,
+            displayName
+        }));
+    }
 
     useEffect(() => {
         const unsub = auth.onAuthStateChanged(user => { // sets up listener to firebase auth state, takes in new user as param. needs to load.
             console.log('Auth Context', user);
             if (!user) { setCurrentUser(null); setUserLoading(false); return; } 
-            async function getName() {
-                setUserLoading(true);
-                const doc = await db.collection('users').doc(user.uid).get();
-                setCurrentUser({ uid: user.uid, ...doc.data() });
-                setUserLoading(false);
-            }
-            getName();
+            
+            setCurrentUser({ uid: user.uid, displayName: user.displayName });
+            setUserLoading(false);
         });
         return unsub;
     }, []); // only run once-- when comp renders
@@ -41,7 +43,8 @@ export default function AuthProvider(props) {
         signup, 
         login, 
         logout, 
-        resetPassword
+        resetPassword,
+        setName
     }
     return (
         <AuthContext.Provider value={value}>

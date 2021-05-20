@@ -2,6 +2,7 @@ import { useContext, useRef, useState } from "react"
 import { Link, useHistory } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import db from "../firebase";
+// import db from "../firebase";
 import './Auth.css';
 
 export default function SignUp() {
@@ -9,7 +10,7 @@ export default function SignUp() {
     const nameRef = useRef();
     const passwordRef = useRef();
     const cPasswordRef = useRef();
-    const { signup } = useContext(AuthContext);
+    const { signup, setName } = useContext(AuthContext);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const history = useHistory();
@@ -22,17 +23,16 @@ export default function SignUp() {
         try {
             setError(null);
             setLoading(true)
-            const newUser = await signup(emailRef.current.value, passwordRef.current.value) // returns a promise
-            await db.collection('users').doc(newUser.user.uid).set({
-                name: nameRef.current.value,
-                books:[]
+            const cred = await signup(emailRef.current.value, passwordRef.current.value) // fires onAuthChanged listener, and displayName is null
+            await cred.user.updateProfile({
+                displayName: nameRef.current.value
             });
-            history.push('/')
+            setName(nameRef.current.value); // change context to have user's displayName
+            await db.collection('users').doc(cred.user.uid).set({});
+            history.push('/');
         } catch (err) {
-            console.log(err.message);
-            setError(true)
+            console.log('ERROR', err.message);
         }
-        setLoading(false)
     }
 
     return (
@@ -44,11 +44,11 @@ export default function SignUp() {
                 <label>First Name</label>
                     <input type="text" ref={nameRef} required />
                 <label>Password</label>
-                    <input type="text" ref={passwordRef} required />
+                    <input type="password" ref={passwordRef} required />
                 <label>Confirm Password</label>
-                    <input type="text" ref={cPasswordRef} required />
+                    <input type="password" ref={cPasswordRef} required />
 
-                { error && <p>Failed to create an account.</p> }
+                { error && <p className='error'>{error}</p> }
                 <button type="submit" disabled={loading}>Sign Up</button>
             </form>
             <p className='below-form'>Already have an account? <Link to='/login'>Login</Link></p>

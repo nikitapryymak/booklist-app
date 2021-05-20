@@ -69,3 +69,11 @@
 .search-form svg:hover {
     color: #e55757;
 }
+.no-books-found {
+    margin-top: .5rem;
+    color: #868686;
+    font-weight: 500;
+}
+.no-books-found a {
+    text-decoration: underline;
+}
